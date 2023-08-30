@@ -7,17 +7,31 @@ use Illuminate\Http\Request;
 
 class PrevisaoDeGastosController extends Controller
 {
-    function get (Request $request, string $id) {
+    function get(Request $request, string $id)
+    {
         return PrevisaoDeGastos::with(
             array('valor', 'empreendimento', 'projeto', 'centroDeCusto', 'departamento')
-            )->get()->find($id)->toJson();
+        )->find($id)->toJson();
     }
 
-    function list (Request $request) {
-        $previsoes = PrevisaoDeGastos::with(
+    function list(Request $request)
+    {
+        $perPage = 10;
+        $page = $request->input('page', 1);
+        $previsaoDeGastos = PrevisaoDeGastos::with(
             array('valor', 'empreendimento', 'projeto', 'centroDeCusto', 'departamento')
-            )->get();
-        return $previsoes->toArray();
+        )->paginate($perPage, ['*'], 'page', $page);
+
+        $response = [
+            'data' => $previsaoDeGastos->items(),
+            'pagination' => [
+                'current_page' => $previsaoDeGastos->currentPage(),
+                'total_pages' => $previsaoDeGastos->lastPage(),
+                'total_records' => $previsaoDeGastos->total(),
+            ],
+        ];
+
+        return response()->json($response);
     }
 
     // function create (Request $request) {

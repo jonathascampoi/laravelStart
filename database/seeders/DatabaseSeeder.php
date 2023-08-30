@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Valores::factory(200000)->create();
 
         // Define a quantidade total de registros que você deseja criar
-        $totalRecords = 200000;
+        $totalRecords = 1600000;
 
         // Define o tamanho do lote para inserção em lote
         $batchSize = 100;

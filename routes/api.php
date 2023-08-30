@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/user', [UserController::class, 'get'])->middleware('auth:api');
-Route::get('/users', [UserController::class, 'list'])->middleware('auth:api');
+Route::get('/user/{id}', [UserController::class, 'get'])->middleware('auth:api');
+Route::get('/user', [UserController::class, 'list'])->middleware('auth:api');
 Route::post('/user', [UserController::class, 'create'])->middleware('auth:api');
 Route::delete('/user/{id}', [UserController::class, 'delete'])->middleware('auth:api');
 Route::put('/user/{id}', [UserController::class, 'edit'])->middleware('auth:api');
 
 Route::get('/previsao/{id}', [PrevisaoDeGastosController::class, 'get'])->middleware('auth:api');
-Route::get('/previsoes', [PrevisaoDeGastosController::class, 'list'])->middleware('auth:api');
+Route::get('/previsao', [PrevisaoDeGastosController::class, 'list'])->middleware('auth:api');
 Route::post('/previsao', [PrevisaoDeGastosController::class, 'create'])->middleware('auth:api');
 Route::delete('/previsao/{id}', [PrevisaoDeGastosController::class, 'delete'])->middleware('auth:api');
 Route::put('/previsao/{id}', [PrevisaoDeGastosController::class, 'edit'])->middleware('auth:api');

@@ -7,8 +7,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    function get (Request $request) {
-        return $request->user()->toJson();
+    function get (Request $request, string $id) {
+        return User::all()->find($id);
     }
 
     function list (Request $request) {
