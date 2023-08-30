@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    function me (Request $request) {
+    function get (Request $request) {
         return $request->user()->toJson();
     }
 
